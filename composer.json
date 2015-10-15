@@ -1,0 +1,41 @@
+{
+    "name": "bavarian/attribute-bundle",
+    "description": "Entity-Attribute-Model for Symfony2",
+    "keywords": ["symfony", "attribute", "eav"],
+    "type": "library",
+
+    "license": "MIT",
+    "minimum-stability": "dev",
+
+    "authors": [
+        {
+            "name": "Jorge Vahldick",
+            "email": "jorge.dev@outlook.com"
+        }
+    ],
+
+    "require": {
+        "php":                          ">=5.3.9",
+        "symfony/symfony":              "~2.3",
+        "doctrine/doctrine-bundle":     "~1.4",
+        "doctrine/orm":                 "^2.4.8"
+    },
+
+    "require-dev": {
+        "phpunit/phpunit":  "~4.1"
+    },
+
+    "config": {
+        "bin-dir": "bin"
+    },
+
+    "autoload": {
+        "psr-4": { "Bavarian\\Bundle\\AttributeBundle\\": "" }
+    },
+
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}

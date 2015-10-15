@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Bavarian\Bundle\AttributeBundle\Model\Definition" table="attribute_definition">
+        <id name="id" type="smallint">
+            <generator strategy="AUTO" />
+            <options>
+                <option name="unsigned">true</option>
+            </options>
+        </id>
+
+        <field name="name" type="string" length="250" />
+        <field name="description" type="text" length="250" />
+        <field name="type" type="string" length="150" />
+
+        <field name="required" type="boolean">
+            <options>
+                <option name="default">0</option>
+                <option name="unsigned">true</option>
+            </options>
+        </field>
+
+        <field name="orderIndex" column="order_index" type="smallint" nullable="true">
+            <options>
+                <option name="unsigned">true</option>
+            </options>
+        </field>
+
+        <many-to-one field="schema" target-entity="Bavarian\Bundle\AttributeBundle\Model\Schema" inversed-by="definition">
+            <join-column name="schema_id" referenced-column-name="id" on-delete="CASCADE" />
+        </many-to-one>
+
+        <one-to-many field="options" target-entity="Bavarian\Bundle\AttributeBundle\Model\Option" mapped-by="definition" fetch="EXTRA_LAZY" orphan-removal="true">
+            <cascade>
+                <cascade-persist />
+                <cascade-remove />
+            </cascade>
+            <order-by>
+                <order-by-field name="id" direction="ASC" />
+            </order-by>
+        </one-to-many>
+
+        <one-to-many field="attributes" target-entity="Bavarian\Bundle\AttributeBundle\Model\Attribute" mapped-by="definition">
+            <cascade>
+                <cascade-remove />
+            </cascade>
+        </one-to-many>
+    </entity>
+
+</doctrine-mapping>
