@@ -4,13 +4,14 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
+    <parameters>
+        <parameter key="bavarian_attribute.attribute_creator.class">Bavarian\Bundle\AttributeBundle\EventListener\AttributeCreatorListener</parameter>
+    </parameters>
+
     <services>
-        <service id="bavarian_attribute.example" class="Bavarian\Bundle\AttributeBundle\Example">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="bavarian_attribute.attribute_creator" class="%bavarian_attribute.attribute_creator.class%">
+            <argument>%bavarian_attribute.mappings%</argument>
+            <tag name="doctrine.event_listener" event="postLoad" />
         </service>
     </services>
-    -->
 </container>

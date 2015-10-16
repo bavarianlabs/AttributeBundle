@@ -33,10 +33,17 @@ class Configuration implements ConfigurationInterface
                     ->isRequired()
                     ->cannotBeEmpty()
                 ->end()
+
                 ->scalarNode('manager_name')
                     ->isRequired()
                     ->cannotBeEmpty()
                     ->defaultValue('default')
+                ->end()
+
+                ->arrayNode('mappings')
+                    ->isRequired()
+                    ->cannotBeEmpty()
+                    ->prototype('scalar')->end()
                 ->end()
             ->end()
         ;
@@ -63,6 +70,7 @@ class Configuration implements ConfigurationInterface
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('model')->defaultValue('Bavarian\Bundle\AttributeBundle\Model\Attribute')->end()
+                                ->scalarNode('repository')->defaultValue('Doctrine\ORM\EntityRepository')->end()
                             ->end()
                         ->end()
 
@@ -70,6 +78,7 @@ class Configuration implements ConfigurationInterface
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('model')->defaultValue('Bavarian\Bundle\AttributeBundle\Model\Definition')->end()
+                                ->scalarNode('repository')->defaultValue('Doctrine\ORM\EntityRepository')->end()
                             ->end()
                         ->end()
 
@@ -77,6 +86,7 @@ class Configuration implements ConfigurationInterface
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('model')->defaultValue('Bavarian\Bundle\AttributeBundle\Model\Option')->end()
+                                ->scalarNode('repository')->defaultValue('Doctrine\ORM\EntityRepository')->end()
                             ->end()
                         ->end()
 
@@ -84,6 +94,7 @@ class Configuration implements ConfigurationInterface
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('model')->defaultValue('Bavarian\Bundle\AttributeBundle\Model\Schema')->end()
+                                ->scalarNode('repository')->defaultValue('Doctrine\ORM\EntityRepository')->end()
                             ->end()
                         ->end()
                     ->end()
